@@ -1,1 +1,6 @@
-
+Consulta 1
+SELECT BillingCountry, Total from invoices ORDER BY Total  DESC
+Consulta 2
+SELECT name, Quantity from genres, invoice_items where genres.GenreId=invoice_items.InvoiceId  ORDER BY Quantity ASC
+Consulta 3
+SELECT Country, Total from customers, invoices where customers.CustomerId=invoices.CustomerId ORDER BY Total DESC
