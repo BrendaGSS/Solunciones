@@ -1,4 +1,4 @@
-# include <bits/stdc++.h>
+# include <bits/stdc++.h> //INCOMPLETO
 using namespace std;
 string post;
 stack <char> p;
@@ -12,25 +12,27 @@ int prioridad(char c){
 	if (c=='*' || c=='/'){return 2;}
 }
 
-void convierte(string s){
+void postfija(string s){
 	for (int i=0;i<s.size();i++){
 		if (op(s[i])){ // si es operador
 			if(p.empty()){ //si la pila está vacía
 				p.push(s[i]);
-				cout<<p.top();
 			}
 			else{//no esta vacia
+
 					int p1=prioridad(s[i]);
 					int p2=prioridad(p.top());
-				while (!p.empty() && p1<=p2 ){
-						cout<<p.top();
+					if (p1<=p2){
+						while (!p.empty() && p1<=p2 ){
 						post=post + p.top();
 						p.pop();
 						p2=prioridad(p.top());
 						
 					}
-					p.push(s[i]);					
-				}
+				}else{
+						p.push(s[i]);
+					
+			}	
 		}else //no es operador
 			post=post + s[i];		
 	}
@@ -39,6 +41,8 @@ string s;
 int main (){
 
 	cin>>s;
-	convierte(s);
+	postfija(s);
+	for(int i=0;i<post.size();i++)
+		cout<<post[i];	
 	
 }
